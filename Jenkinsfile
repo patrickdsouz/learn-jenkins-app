@@ -52,6 +52,7 @@ pipeline {
             }
             steps {
                     sh '''
+                        node -p "require('@playwright/test/package.json').version"                    
                         npm install serve
                         node_modules/.bin/serve -s build &
                         sleep 10
