@@ -15,6 +15,7 @@ pipeline {
             }
             steps {
                 sh '''
+                    CleanWs()
                     ls -la
                     node --version
                     npm --version
