@@ -52,9 +52,15 @@ pipeline {
             }
             steps {
                     sh '''
-                        rm -rf node_modules
+                        echo "Cleaning workspace..."
+                        rm -rf node_modules package-lock.json
+
+                        echo "Installing fresh dependencies..."
                         npm ci
-                        node -p "require('@playwright/test/package.json').version"                    
+
+                        echo "Checking Playwright version..."
+                        node -p "require('@playwright/test/package.json').version"
+                    
                         npm install serve
                         node_modules/.bin/serve -s build &
                         sleep 10
